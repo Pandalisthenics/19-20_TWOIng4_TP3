@@ -4,6 +4,7 @@
 const API_KEY = "4081444b7b90198136fefe6ed4ccf35b";
 // Url API
 const API_URL = "https://api.openweathermap.org/data/2.5/weather";
+//url prev 3j
 const API_URL_PREV = "https://api.openweathermap.org/data/2.5/forecast/daily";
 
 // Base source icon
@@ -11,13 +12,15 @@ const API_URL_ICON = "http://openweathermap.org/img/wn/";
 
 
 class API_WEATHER{
-  constructor(city){
-    // Si la ville n'est pas définit alors la ville par défault est Paris
-      
+  constructor(city){  
+      //ville prend la valeur du input
     city = document.getElementById("city-input").value;
+      
+      // Si la ville n'est pas définit alors la ville par défault est Paris
       if(document.getElementById("city-input").value == ''){
       city = "paris";
     }
+      //le nom de ville de l'objet créer= city
     this.city = city;
   }
 
@@ -29,7 +32,7 @@ class API_WEATHER{
     })
   }
 
-  getThreeDayForecast(){
+getThreeDayForecast(){
     return axios.get(`${API_URL_PREV}?q=${this.city}&units=metric&cnt=4&appid=${API_KEY}`, {
           crossdomain: true
         })
